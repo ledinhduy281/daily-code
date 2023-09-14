@@ -57,7 +57,6 @@ class Solution:
             
             if extra > 0:
                 extra -= 1
-  
             dummy.next = None
             parts.append(part_head.next)
         
