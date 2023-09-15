@@ -73,6 +73,8 @@ class UnionFind:
 
 
 class Solution:
+    # Prim algorithm
+    
     # def minCostConnectPoints(self, points: List[List[int]]) -> int:
     #     n = len(points)
     #     visited = [False] * n
@@ -95,10 +97,11 @@ class Solution:
     #                 new_distance = manhattan_distance(points[u], points[v])
     #                 if new_distance < heap_dict.get(v, float('inf')):
     #                     heap_dict[v] = new_distance
-    #                     hq.heappush(min_heap, (new_distance, v))
-        
+    #                     hq.heappush(min_heap, (new_distance, v))   
     #     return mst_weight
 
+    # Kruskal algorithm
+    
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
         n = len(points)
         uf = UnionFind(n)
