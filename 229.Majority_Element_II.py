@@ -47,6 +47,7 @@ from typing import List
 
 class Solution:
     def majorityElement(self, nums: List[int]) -> List[int]:
+        # Boyer-Moore Voting Algorithm
         if not nums:
             return []
         
