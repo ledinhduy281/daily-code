@@ -4,14 +4,11 @@ There are n children standing in a line. Each child is assigned a rating value g
 You are giving candies to these children subjected to the following requirements:
 
 Each child must have at least one candy.
-
 Children with a higher rating get more candies than their neighbors.
-
 Return the minimum number of candies you need to have to distribute the candies to the children.
 
 '''
 
-from typing import List
 import collections
 import itertools
 import functools
@@ -32,6 +29,7 @@ from collections import OrderedDict
 from collections import deque
 from collections import Counter
 from typing import Optional
+from typing import List
 
 
 class Solution:
@@ -49,7 +47,5 @@ class Solution:
         
         return sum(candies)
 
-
 print(Solution().candy(ratings=[1,0,2]))
-print(Solution().candy(ratings=[1,2,2]))
 

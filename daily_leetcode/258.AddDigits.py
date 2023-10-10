@@ -1,9 +1,8 @@
 '''
-Template to run on VSCode
+Given an integer num, repeatedly add all its digits until the result has only one digit, and return it.
 
 '''
 
-from typing import List
 import collections
 import itertools
 import functools
@@ -24,12 +23,13 @@ from collections import OrderedDict
 from collections import deque
 from collections import Counter
 from typing import Optional
+from typing import List
+
+class Solution:
+    def addDigits(self, num: int) -> int:
+        # return (num - 1)%9 + 1 if num else 0
+        return num % 9 or (num and 9)
 
 
-
-# print(Solution().())
-# print(Solution().())
-
-
-
-        
+print(Solution().addDigits(num=0))
+print(Solution().addDigits(num=38))
