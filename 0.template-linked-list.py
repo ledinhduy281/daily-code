@@ -34,6 +34,6 @@ from typing import List
 # for part in result:
 #     current = part
 #     while current:
-#         print(current.val, end=" -> ")
+#         ic(current.val, end=" -> ")
 #         current = current.next
-#     print(None)  # Print None to represent the end of a part
+#     ic(None)  # Print None to represent the end of a part

@@ -26,5 +26,4 @@ from collections import Counter
 from typing import Optional
 from typing import List
 
-# print(Solution().())
 # ic(Solution().())
