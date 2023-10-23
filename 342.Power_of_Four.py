@@ -1,10 +1,8 @@
 '''
-
 Given an integer n, return true if it is a power of four. Otherwise, return false.
 
 An integer n is a power of four, if there exists an integer x such that n == 4x.
 
- 
 
 Example 1:
 
@@ -18,7 +16,6 @@ Example 3:
 
 Input: n = 1
 Output: true
- 
 
 Constraints:
 
@@ -49,6 +46,21 @@ from collections import Counter
 from typing import Optional
 from typing import List
 
-
-
-# ic(Solution().())
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        n = len(nums)
+        left = 0
+        zeros = 0
+        ans = 0
+        for right in range(n):
+            if nums[right] == 0:
+                zeros += 1
+            while zeros > 1:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+            ans = max(ans, right - left + 1 - zeros)
+        return ans - 1 if ans == n else ans
+    
+# ic(Solution().longestSubarray(nums=[1,1,0,1,1,1,0,1,1,0,1]))
+ic(Solution().longestSubarray(nums=[1,1,1,1,1,1,1,1]))
