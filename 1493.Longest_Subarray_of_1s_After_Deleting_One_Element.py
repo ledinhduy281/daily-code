@@ -54,19 +54,20 @@ from typing import Optional
 from typing import List
 
 class Solution:
-    def isPowerOfFour(self, n: int) -> bool:
-        # if n == 1:
-        #     return True
-        # if n < 4:  
-        #     return False
-        # while n > 4:
-        #     if n % 4 != 0:
-        #         return False
-        #     n = n // 4
-        # return True
-        if n > 0 and (n & (n - 1)) == 0:
-        # Check if the power of two is at an odd position
-            return n & 0x55555555 == n
-        return False
-
-ic(Solution().isPowerOfFour(n=16))
+    def longestSubarray(self, nums: List[int]) -> int:
+        n = len(nums)
+        left = 0
+        zeros = 0
+        ans = 0
+        for right in range(n):
+            if nums[right] == 0:
+                zeros += 1
+            while zeros > 1:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+            ans = max(ans, right - left + 1 - zeros)
+        return ans - 1 if ans == n else ans
+    
+# ic(Solution().longestSubarray(nums=[1,1,0,1,1,1,0,1,1,0,1]))
+ic(Solution().longestSubarray(nums=[1,1,1,1,1,1,1,1]))
