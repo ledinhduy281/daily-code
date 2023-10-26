@@ -29,11 +29,10 @@ from typing import List
 
 
 # head = ListNode(1, ListNode(2, ListNode(3)))
-# result = Solution().(head,____)
+# result = Solution().(head)
 
-# for part in result:
-#     current = part
-#     while current:
-#         ic(current.val, end=" -> ")
-#         current = current.next
-#     ic(None)  # Print None to represent the end of a part
+# current = result
+# while current:
+#     print(current.val, end=" -> ")
+#     current = current.next
+# print(None)
