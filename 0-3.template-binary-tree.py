@@ -26,6 +26,19 @@ from collections import Counter
 from typing import Optional
 from typing import List
 
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
+# Create two binary trees in the global scope
+# Tree 1:
+#     3
+#    / \
+#   5   1
+tree1 = TreeNode(3)
+tree1.left = TreeNode(5)
+tree1.right = TreeNode(1)
 
 # ic(Solution().())
