@@ -1,2 +1,3 @@
 # daily-code
-My daily coding on leetcode
+
+My coding on leetcode to learn Python (mostly)!
