@@ -1,37 +1,52 @@
 class Solution:
-
     def maxSumOfThreeSubarrays(self, nums: List[int], k: int) -> List[int]:
         n = len(nums)
+        max_sum = 0
 
-        # Prefix sum array to calculate sum of any subarray in O(1) time
-        prefix_sum = [0] * (n + 1)
-        for i in range(1, n + 1):
-            prefix_sum[i] = prefix_sum[i - 1] + nums[i - 1]
+        # Create prefix sum array using accumulate
+        prefix_sum = [0] + list(accumulate(nums))
 
-        # Arrays to store the best sum and starting indices for up to 3 subarrays
-        best_sum = [[0] * (n + 1) for _ in range(4)]
-        best_index = [[0] * (n + 1) for _ in range(4)]
-
-        # Compute the best sum and indices for 1, 2, and 3 subarrays
-        for t in range(1, 4):
-            for i in range(k * t, n + 1):
-                current_sum = (
-                    prefix_sum[i] - prefix_sum[i - k] + best_sum[t - 1][i - k]
-                )
-
-                # Check if the current configuration gives a better sum
-                if current_sum > best_sum[t][i - 1]:
-                    best_sum[t][i] = current_sum
-                    best_index[t][i] = i - k
-                else:
-                    best_sum[t][i] = best_sum[t][i - 1]
-                    best_index[t][i] = best_index[t][i - 1]
-
-        # Trace back the indices of the three subarrays
+        # Initialize arrays for best indices
+        left_max_idx = [0] * n
+        right_max_idx = [0] * n
         result = [0] * 3
-        end = n
-        for t in range(3, 0, -1):
-            result[t - 1] = best_index[t][end]
-            end = result[t - 1]
+
+        # Calculate best left subarray positions
+        curr_max_sum = prefix_sum[k] - prefix_sum[0]
+        for i in range(k, n):
+            curr_sum = prefix_sum[i + 1] - prefix_sum[i + 1 - k]
+            if curr_sum > curr_max_sum:
+                left_max_idx[i] = i + 1 - k
+                curr_max_sum = curr_sum
+            else:
+                left_max_idx[i] = left_max_idx[i - 1]
+
+        # Calculate best right subarray positions
+        right_max_idx[n - k] = n - k
+        curr_max_sum = prefix_sum[n] - prefix_sum[n - k]
+        for i in range(n - k - 1, -1, -1):
+            curr_sum = prefix_sum[i + k] - prefix_sum[i]
+            if curr_sum >= curr_max_sum:
+                right_max_idx[i] = i
+                curr_max_sum = curr_sum
+            else:
+                right_max_idx[i] = right_max_idx[i + 1]
+
+        # Find optimal middle position
+        for i in range(k, n - 2 * k + 1):
+            left_idx = left_max_idx[i - 1]
+            right_idx = right_max_idx[i + k]
+            total_sum = (
+                prefix_sum[i + k]
+                - prefix_sum[i]
+                + prefix_sum[left_idx + k]
+                - prefix_sum[left_idx]
+                + prefix_sum[right_idx + k]
+                - prefix_sum[right_idx]
+            )
+
+            if total_sum > max_sum:
+                max_sum = total_sum
+                result = [left_idx, i, right_idx]
 
         return result
