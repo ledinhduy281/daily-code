@@ -7,5 +7,10 @@
 --     group by managerId
 --     having count(*) >= 5
 -- )
-select b.name from Employee b join Employee a on b.id = a.managerId group by b.id having count(*) >= 5
+select b.name 
+from Employee b 
+join Employee a 
+on b.id = a.managerId 
+group by a.managerId 
+having count(*) >= 5
 
