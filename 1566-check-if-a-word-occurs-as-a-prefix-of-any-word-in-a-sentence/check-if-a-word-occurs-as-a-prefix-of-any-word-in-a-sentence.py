@@ -8,8 +8,8 @@ class Solution:
     #     # Join the filtered words back into a sentence
     #     return " ".join(filtered_words)
 
-    # def count_spaces(sef, sentence: str) -> int:
-    #     return sentence.count(" ")
+    def count_spaces(sef, sentence: str) -> int:
+        return sentence.count(" ")
 
     def isPrefixOfWord(self, sentence: str, searchWord: str) -> int:
         # words = sentence.split()
